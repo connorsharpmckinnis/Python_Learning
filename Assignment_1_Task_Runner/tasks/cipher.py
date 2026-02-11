@@ -1,9 +1,9 @@
 import random
 
-def main(input_text:str, retries:int):
+def run(input:str, retries:int, **kwargs):
     # Takes an input string, makes it lowercase, ciphers it by a random amount, then tries to brute-force resolve the cipher
     # Returns either the cipher shift value (if discovered) or a failure message
-    original_string = input_text.lower()
+    original_string = input.lower()
     offset_value = random.randint(1, 25)
     
     ciphered_string = encode_string(original_string, offset_value)
@@ -81,4 +81,4 @@ def test(in_string):
 
 
 if __name__ == "__main__":
-    main(input_text="Hello, World!", retries=26)
+    main(input="Hello, World!", retries=26)

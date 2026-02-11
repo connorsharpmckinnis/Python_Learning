@@ -1,4 +1,4 @@
-def main(name:str):
+def run(name:str, **kwargs):
     print(f"Hello, {name}!")
     print("Welcome to the basic print task!")
     return True

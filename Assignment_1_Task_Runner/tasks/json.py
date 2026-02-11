@@ -29,7 +29,7 @@ def generate_dict(name:str, age:int=None, city:str=None) -> dict:
         "city": city
     }
 
-def main(name:str, age:int=None, city:str=None):
+def run(name:str, age:int=None, city:str=None, **kwargs):
     content_dict = generate_dict(name, age, city)
     write_file(content_dict, "output.json")
 
