@@ -1,0 +1,6 @@
+task: cipher
+input: "Hello World"
+retries: 15
+name: "Connor McKinnis"
+age: 26
+city: "Sanford, NC"

@@ -2,10 +2,14 @@ import argparse
 from tasks import cipher, json, printer, error
 import yaml
 
+def parse_yaml(file_path:str):
+    with open(file_path, 'r') as file:
+        return yaml.safe_load(file)
+
+
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument(
     "--task",
-    required=True,
     help="Name of the task to run"
 )
 
@@ -40,6 +44,11 @@ parser.add_argument(
     help="A city input for applicable tasks"
 )
 
+parser.add_argument(
+    "--config",
+    help="Path to a YAML config file"
+)
+
 TASKS = {
     "cipher": cipher,
     "json": json,
@@ -59,10 +68,21 @@ def run_task(task_name:str, **kwargs):
 args = parser.parse_args()
 
 task = args.task
-input = args.input
+input_string = args.input
 retries = args.retries
 name = args.name
 age = args.age
 city = args.city
+config = args.config
 
-run_task(task_name=task, input=input, retries=retries, name=name, age=age, city=city)
+if config:
+    config_data = parse_yaml(config)
+    print(config_data)
+    task = config_data.get("task", task)
+    input_string = config_data.get("input", input_string)
+    retries = config_data.get("retries", retries)
+    name = config_data.get("name", name)
+    age = config_data.get("age", age)
+    city = config_data.get("city", city)
+
+run_task(task_name=task, input=input_string, retries=retries, name=name, age=age, city=city)

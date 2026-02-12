@@ -1,4 +1,7 @@
 import random
+import time
+# Cipher task
+# Simulates a network call with sleep and randomness
 
 def run(input:str, retries:int, **kwargs):
     # Takes an input string, makes it lowercase, ciphers it by a random amount, then tries to brute-force resolve the cipher
@@ -10,7 +13,7 @@ def run(input:str, retries:int, **kwargs):
     print(f"Ciphered: {ciphered_string}")
     print("Attempting to decode")
     success, shift_value = attempt_decrypt(ciphered_string, retries, original_string)
-    
+    time.sleep(random.randint(1, 5))
     if success:
         print(f"Success! The string was ciphered with a shift value of {shift_value}")
         return True
